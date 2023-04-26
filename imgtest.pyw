@@ -14,7 +14,9 @@ from mutagen.mp3 import MP3
 pygame.init()
 song = MP3("000 test audio.mp3")
 print(song.info.length)
-pygame.mixer.music.load("000 test audio.mp3")
+a = pygame.mixer.Sound("000 test audio.mp3")
+pygame.mixer.Sound.play(a)
+pygame.mixer.music.load("01 Whole Lotta Love.mp3")
 pygame.mixer.music.play()
 
 
