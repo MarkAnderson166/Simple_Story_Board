@@ -1,59 +1,83 @@
-import tkinter as tk
-from PIL import Image, ImageTk
-import pygame
-from mutagen.mp3 import MP3
-import os
-import time
 
-#  TODO:
-# set music fades to sound sum
-# next scene - repeat
-# title screen for scene0
-# menu later if at all
+import pygame
+import os
 
 width = 1280
 height = 720
 
-root = tk.Tk()
-canvas = tk.Canvas(root, width = width, height = height)
-canvas.pack()
 pygame.init()
+pygame.mixer.init()
+pygame.display.set_caption("Simple_Story_Board") 
+screen = pygame.display.set_mode((width,height))
 
 
-x = os.path.exists("scene0")
-print(x)
-y = os.path.isfile("scene0/0.wav")
-print(y)
-song = MP3("scene0/music.mp3")
-print(song.info.length)
-
-sceneCount = 1
-imgCount = 3
 soundCount = 3
 # will need array of time triggers for dialog
 # slide change triggers can be soundLenSum/imgCount
 # timer must be constantly watching for either trigger
-soundLenSum = 18
+soundLenSum = 4
+soundTimes = []
 
+def countScenes(count):
+    global sceneCount
+    if os.path.exists("scene"+str(count)):
+        count = int(count)+1
+        countScenes(count)
+    else:
+        sceneCount = count
+        return int(count)
+    
+def countImg(scene, count):
+    global imgCount
+    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".jpg"):
+        count = int(count)+1
+        countImg(scene, count)
+    else:
+        imgCount = count
+        return int(count)
+    
+def getSoundTimes(scene, count):
+    #global soundTimes
+    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".wav"):
+        a = pygame.mixer.Sound("scene"+str(scene)+"/"+str(count)+".wav")
+        soundTimes.append(round(pygame.mixer.Sound.get_length(a)+soundTimes[count],2))
+        count = int(count)+1
+        getSoundTimes(scene, count)
+    else:
+        return int(count)
+    
+
+countScenes(0)
 
 for i in range (sceneCount):
-    pygame.mixer.music.load("scene0/music.mp3")
+
+    pygame.mixer.music.load("scene"+str(i)+"/music.mp3")
     pygame.mixer.music.set_volume(.2)
     pygame.mixer.music.play()
-    img = ImageTk.PhotoImage(Image.open("scene0/"+str(0)+".jpg"))
-    canvas.create_image(width/2, height/2, image=img)
+
+    countImg(i,0)
+    soundTimes.clear()
+    soundTimes.append(0)
+    getSoundTimes(i,0)
+    print(soundTimes)
 
     for j in range (imgCount):
-        img = ImageTk.PhotoImage(Image.open("scene0/"+str(j)+".jpg"))
-        canvas.create_image(width/2, height/2, image=img)
-        print("starting music")
-        print("starting img: "+str(j))
-        dialog = pygame.mixer.Sound("scene0/"+str(j)+".wav")
+
+        img = pygame.image.load("scene"+str(i)+"/"+str(j)+".jpg")
+        screen.blit(img,(0,0))
+        pygame.display.flip()
+
+        dialog = pygame.mixer.Sound("scene"+str(i)+"/"+str(j)+".wav")
         dialog.set_volume(.3)
         pygame.mixer.Sound.play(dialog)
-        print("starting dialog: "+str(j))
-        time.sleep(soundLenSum/imgCount)
+        pygame.time.wait(int((soundLenSum*1000)/imgCount))
 
 
-root.mainloop()
+pygame.quit()   
 
+
+#  TODO:
+# set music fades to sound sum
+# fade between slides
+# title screen for scene0
+# menu later if at all
