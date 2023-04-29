@@ -11,13 +11,6 @@ pygame.display.set_caption("Simple_Story_Board")
 screen = pygame.display.set_mode((width,height))
 
 
-soundCount = 3
-# will need array of time triggers for dialog
-# slide change triggers can be soundLenSum/imgCount
-# timer must be constantly watching for either trigger
-soundLenSum = 4
-soundTimes = []
-
 def countScenes(count):
     global sceneCount
     if os.path.exists("scene"+str(count)):
@@ -27,6 +20,7 @@ def countScenes(count):
         sceneCount = count
         return int(count)
     
+
 def countImg(scene, count):
     global imgCount
     if os.path.isfile("scene"+str(scene)+"/"+str(count)+".jpg"):
@@ -36,6 +30,7 @@ def countImg(scene, count):
         imgCount = count
         return int(count)
     
+
 def getSoundTimes(scene, count):
     #global soundTimes
     if os.path.isfile("scene"+str(scene)+"/"+str(count)+".wav"):
@@ -47,37 +42,67 @@ def getSoundTimes(scene, count):
         return int(count)
     
 
+def changeImg(scene, slide):
+
+    img2 = pygame.image.load("scene"+str(scene)+"/"+str(slide)+".jpg").convert_alpha()
+    img2 = pygame.transform.scale(img2,(width,height))
+    if slide == 0:
+        img1 = img2
+    else:
+        img1 = pygame.image.load("scene"+str(scene)+"/"+str(slide-1)+".jpg").convert_alpha()
+    img1 = pygame.transform.scale(img1,(width,height))
+
+    alpha1 = 255
+    alpha1_change = -1
+    alpha2 = 0
+    alpha2_change = 1
+    while alpha2 < 255: 
+        alpha1 += alpha1_change
+        alpha2 += alpha2_change
+        alpha1 = max(0, min(alpha1, 255))   
+        alpha2 = max(0, min(alpha2, 255))   
+        alpha1_image = img1.copy()
+        alpha2_image = img2.copy()
+        alpha1_image.set_alpha(alpha1)    
+        alpha2_image.set_alpha(alpha2)    
+        screen.blit(alpha2_image, (0, 0))
+        pygame.display.flip()
+
+
 countScenes(0)
 
 for i in range (sceneCount):
 
-    pygame.mixer.music.load("scene"+str(i)+"/music.mp3")
-    pygame.mixer.music.set_volume(.2)
-    pygame.mixer.music.play()
+    music = pygame.mixer.Sound("scene"+str(i)+"/music.mp3")
+    music.set_volume(.3)
+    pygame.mixer.Sound.play(music)
 
-    countImg(i,0)
-    soundTimes.clear()
-    soundTimes.append(0)
+    soundTimes = [0]
+
     getSoundTimes(i,0)
-    print(soundTimes)
+    countImg(i,0)
+    changeImg(i,0)
+    
+    sceneStartTime = pygame.time.get_ticks()
+    slideTimeEach = (soundTimes[-1]+1)/imgCount
+    slideNumber = 1
+    soundNumber = 0
 
-    for j in range (imgCount):
+    while soundTimes:
+        
+        currentTime = (pygame.time.get_ticks()-sceneStartTime)/1000
 
-        img = pygame.image.load("scene"+str(i)+"/"+str(j)+".jpg")
-        screen.blit(img,(0,0))
-        pygame.display.flip()
+        if currentTime > soundTimes[0]:
+            soundTimes.pop(0)
+            if soundTimes:
+                dialog = pygame.mixer.Sound("scene"+str(i)+"/"+str(soundNumber)+".wav")
+                dialog.set_volume(.3)
+                pygame.mixer.Sound.play(dialog)
+                soundNumber += 1
 
-        dialog = pygame.mixer.Sound("scene"+str(i)+"/"+str(j)+".wav")
-        dialog.set_volume(.3)
-        pygame.mixer.Sound.play(dialog)
-        pygame.time.wait(int((soundLenSum*1000)/imgCount))
+        if currentTime > slideTimeEach*(slideNumber) and soundTimes:
+            changeImg(i, slideNumber)
+            slideNumber += 1
 
 
-pygame.quit()   
-
-
-#  TODO:
-# set music fades to sound sum
-# fade between slides
-# title screen for scene0
-# menu later if at all
+pygame.quit()
