@@ -32,7 +32,35 @@ The camera fades to black as the four adventurers clink their mugs together, eag
 
 Images:    (https://beta.dreamstudio.ai/generate) -(stable diffusion)
 
-0 -> 7
+------
+
+Four adventurers walk into a crowded medieval tavern, filled with rowdy patrons.
+
+One is a tall, muscular half-orc, with a scar running down his left cheek and a battle-axe slung over his shoulder. He wears a suit of chain mail.
+
+One is a slender elf, with a bow slung over her shoulder and a quiver of arrows at her side. She wears a green cloak and a hood pulled over her head.
+
+One A portly dwarf, with a bushy brown beard and a leather apron covering his sturdy frame. He carries a large hammer at his side.
+
+One is a human wizard, with a pointed hat and a long robe that trails across the floor. He carries a staff in one hand and a spellbook in the other.
+
+------
+
+a tall, muscular half-orc, with a scar running down his left cheek and a battle-axe slung over his shoulder. He wears a suit of chain mail, and a look of fierce determination on his face.
+
+------
+
+a slender elf, with a bow slung over her shoulder and a quiver of arrows at her side. She wears a green cloak and a hood pulled over her head, and her sharp eyes scan the room for potential threats.
+
+------
+
+a portly dwarf, with a bushy brown beard and a leather apron covering his sturdy frame. He carries a large hammer at his side, and his eyes sparkle with the promise of riches and adventure.
+
+------
+
+a human wizard, with a pointed hat and a long robe that trails across the floor. He carries a staff in one hand and a spellbook in the other, and his eyes flicker with the power of arcane magic.
+
+------
 
 four adventurers have just arrived at a medieval tavern.
 
@@ -44,8 +72,7 @@ Across from them sits a portly dwarf, with a bushy brown beard and a leather apr
 
 Last but not least is a human wizard, with a pointed hat and a long robe that trails across the floor. He carries a staff in one hand and a spellbook in the other, and his eyes flicker with the power of arcane magic.
 
-
-8 -> 14
+------
 
 four adventurers settle into their seats at a medieval tavern.
 , a grizzled old barkeep approaches them. "You folks lookin' for work?" he asks, eyeing their weapons and armor. "I got a line on a bounty, if you're interested."
@@ -60,7 +87,7 @@ The barkeep names a figure, and the adventurers nod in agreement. "We're in," th
 
 The camera fades to black as the four adventurers clink their mugs together, eager to set off on their next adventure.
 
-
+------
 
 
 */

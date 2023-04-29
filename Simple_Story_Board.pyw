@@ -106,3 +106,9 @@ for i in range (sceneCount):
 
 
 pygame.quit()
+
+
+# TODO:
+# change trigger system back to syncronised image and dialog
+# it seems like a bad idea 
+# but its needed to dictate image changes easily
