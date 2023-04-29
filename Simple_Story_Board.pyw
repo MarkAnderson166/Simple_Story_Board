@@ -2,8 +2,8 @@
 import pygame
 import os
 
-width = 1280
-height = 720
+width = 1024
+height = 1024
 
 pygame.init()
 pygame.mixer.init()
@@ -23,7 +23,7 @@ def countScenes(count):
 
 def countImg(scene, count):
     global imgCount
-    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".jpg"):
+    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".png"):
         count = int(count)+1
         countImg(scene, count)
     else:
@@ -33,8 +33,8 @@ def countImg(scene, count):
 
 def getSoundTimes(scene, count):
     #global soundTimes
-    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".wav"):
-        a = pygame.mixer.Sound("scene"+str(scene)+"/"+str(count)+".wav")
+    if os.path.isfile("scene"+str(scene)+"/"+str(count)+".mp3"):
+        a = pygame.mixer.Sound("scene"+str(scene)+"/"+str(count)+".mp3")
         soundTimes.append(round(pygame.mixer.Sound.get_length(a)+soundTimes[count],2))
         count = int(count)+1
         getSoundTimes(scene, count)
@@ -44,12 +44,12 @@ def getSoundTimes(scene, count):
 
 def changeImg(scene, slide):
 
-    img2 = pygame.image.load("scene"+str(scene)+"/"+str(slide)+".jpg").convert_alpha()
+    img2 = pygame.image.load("scene"+str(scene)+"/"+str(slide)+".png").convert_alpha()
     img2 = pygame.transform.scale(img2,(width,height))
     if slide == 0:
         img1 = img2
     else:
-        img1 = pygame.image.load("scene"+str(scene)+"/"+str(slide-1)+".jpg").convert_alpha()
+        img1 = pygame.image.load("scene"+str(scene)+"/"+str(slide-1)+".png").convert_alpha()
     img1 = pygame.transform.scale(img1,(width,height))
 
     alpha1 = 255
@@ -73,7 +73,7 @@ countScenes(0)
 
 for i in range (sceneCount):
 
-    music = pygame.mixer.Sound("scene"+str(i)+"/music.mp3")
+    music = pygame.mixer.Sound("scene"+str(i)+"/backing.mp3")
     music.set_volume(.3)
     pygame.mixer.Sound.play(music)
 
@@ -95,7 +95,7 @@ for i in range (sceneCount):
         if currentTime > soundTimes[0]:
             soundTimes.pop(0)
             if soundTimes:
-                dialog = pygame.mixer.Sound("scene"+str(i)+"/"+str(soundNumber)+".wav")
+                dialog = pygame.mixer.Sound("scene"+str(i)+"/"+str(soundNumber)+".mp3")
                 dialog.set_volume(.3)
                 pygame.mixer.Sound.play(dialog)
                 soundNumber += 1

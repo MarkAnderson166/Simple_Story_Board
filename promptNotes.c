@@ -45,7 +45,7 @@ Across from them sits a portly dwarf, with a bushy brown beard and a leather apr
 Last but not least is a human wizard, with a pointed hat and a long robe that trails across the floor. He carries a staff in one hand and a spellbook in the other, and his eyes flicker with the power of arcane magic.
 
 
-8 -> 
+8 -> 14
 
 four adventurers settle into their seats at a medieval tavern.
 , a grizzled old barkeep approaches them. "You folks lookin' for work?" he asks, eyeing their weapons and armor. "I got a line on a bounty, if you're interested."
