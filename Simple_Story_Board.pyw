@@ -78,11 +78,17 @@ for i in range (sceneCount):
     pygame.mixer.Sound.play(music)
 
     soundTimes = [0]
-
     getSoundTimes(i,0)
     countImg(i,0)
     changeImg(i,0)
-    
+
+    # if we have the same number of images as sound files they will sync
+    # else, the images get equal time each
+    if len(soundTimes)-1 == imgCount:
+        imgChangeMode = 'directed'
+    else:
+        imgChangeMode = 'even'
+
     sceneStartTime = pygame.time.get_ticks()
     slideTimeEach = (soundTimes[-1]+1)/imgCount
     slideNumber = 1
@@ -99,16 +105,13 @@ for i in range (sceneCount):
                 dialog.set_volume(.3)
                 pygame.mixer.Sound.play(dialog)
                 soundNumber += 1
+                if imgChangeMode == 'directed':
+                    changeImg(i, slideNumber-1)
+                    slideNumber += 1
 
-        if currentTime > slideTimeEach*(slideNumber) and soundTimes:
+        if imgChangeMode == 'even' and currentTime > slideTimeEach*(slideNumber) and soundTimes:
             changeImg(i, slideNumber)
             slideNumber += 1
 
 
 pygame.quit()
-
-
-# TODO:
-# change trigger system back to syncronised image and dialog
-# it seems like a bad idea 
-# but its needed to dictate image changes easily
