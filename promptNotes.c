@@ -155,4 +155,26 @@ Standing outside, in the a street market.
 ----------------
 
 
+
+
+
+--------------
+midjourney
+------------
+
+a tall, muscular half-orc, with a scar running down his left cheek and a battle-axe slung over his shoulder. He wears a suit of chain mail, and a look of fierce determination on his face. Walking through a medieval street market, talking to a friend.--v5 --ar 16:9
+
+Photo of a slender elf, with a bow slung over her shoulder and a quiver of arrows at her side. She wears a green cloak and a hood pulled over her head, and her sharp eyes scan the room for potential threats. Walking through a medieval street market, talking to a friend.--v5 --ar 16:9
+
+Photo of a portly dwarf, with a bushy brown beard and a leather apron covering his sturdy frame. He carries a large hammer at his side, and his eyes sparkle with the promise of riches and adventure. Walking through a medieval street market, talking to a friend.--v5 --ar 16:9
+
+Photo of a human wizard, with a pointed hat and a long robe that trails across the floor. He carries a staff in one hand and a spellbook in the other, and his eyes flicker with the power of arcane magic. Walking through a medieval street market during the daytime, talking to a friend.--v5 --ar 16:9
+
+concept art, matte painting, on a golden autumn morning, an gorgeous paradise palace standing on a tranquil lake, in Magnificent john howe landscape, fantasy, fairy tale, trending on artstation, by Caspar David Friedrich, unreal engine, light effect
+
+Create a portrait of a powerful and fearless Celtic Jedi Sentinel wearing shiny and wet Shamrock Armor. They wield a green lightsaber in their hand, emanating a vibrant green glow. The art should be created in Aleksi Briclot's style and use dramatic lighting to capture the Sentinel's might and intensity.
+
+
+
+
 */
