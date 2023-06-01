@@ -4,6 +4,7 @@ import openai
 
 openai.api_key = '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' # 'YOUR_API_KEY'
 openai.api_key = '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'
+openai.api_key = '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'
 # name?: My_Test_Key_For_Python_API_Test
 
 messages_dave = [ {"role": "system", "content": "helpfull assistant"} ]
